@@ -50,7 +50,7 @@ public class FrequencyMatrixClass {
             }
         }
             // Unique Words in combined words list
-            File combinedFileObject = new File(OUTPUT_FILE);
+            File combinedFileObject = new File(COMBINED_OUTPUT_FILE);
             Scanner obj = new Scanner(combinedFileObject);
             obj.useDelimiter("[^a-zA-Z']+");
 
@@ -76,32 +76,42 @@ public class FrequencyMatrixClass {
 
     // Check for count of unique words in every document.
 
-    public static void generateMapForDocument() throws Exception {
+    public static double[][] generateFrequencyMatrix() throws Exception {
 
         String[] uniqueWordsFromAllDocuments = generateUniqueWordsFromAllDocuments();
 
         File directory = new File(targetDirectory);
         File[] filesInDirectory = directory.listFiles();
-        Map<String,Integer> mapForCount = new HashMap<>();
+
+        double[][] frequencyMatrix = new double[filesInDirectory.length][uniqueWordsFromAllDocuments.length];
+
+        int fileCounter = 0;
+        int count = 0;
 
         for(File file: filesInDirectory) {
             if (file.isFile()) {
 
                 String[] tokensOfFile = tokenizeDocument(file.getAbsolutePath());
-                int count = 0;
+                count = 0;
 
                 for (int i = 0; i < uniqueWordsFromAllDocuments.length; i++) {
+
                     for (int j = 0; j < tokensOfFile.length; j++) {
                         if (uniqueWordsFromAllDocuments[i].equalsIgnoreCase(tokensOfFile[j]))
                             count++;
                     }
-                    System.out.println(uniqueWordsFromAllDocuments[i] + " " + count);
-                    mapForCount.put(uniqueWordsFromAllDocuments[i], count);
+
+                    // storing values in matrix
+                    frequencyMatrix[fileCounter][i] = count;
                     count = 0;
-                    System.out.println("");
+
                 }
+
+                fileCounter++;
             }
         }
 
+        return frequencyMatrix;
     }
+
 }
