@@ -51,8 +51,6 @@ public class FrequencyBasedFilterClass {
         int numToShow = Math.min(num, rankedWords.size());
         int mostWords = calcMost(rankedWords);
 
-        System.out.println(mostWords);
-
         int sumOfRankedWordsUpper = 0;
         int sumOfRankedWordsLower = 0;
         int upperLimit;
@@ -74,14 +72,12 @@ public class FrequencyBasedFilterClass {
             sumOfRankedWordsUpper = sumOfRankedWordsUpper + rankedWords.get(i).freq;
 
         upperLimit = sumOfRankedWordsUpper/(numToShow/2);
-        System.out.println(upperLimit);
 
         //lower limit for Ziph's formula on arbitrary basis
         for(int i = numToShow/2; i < numToShow; i++ )
             sumOfRankedWordsLower = sumOfRankedWordsLower + rankedWords.get(i).freq;
 
         lowerLimit = sumOfRankedWordsLower/(numToShow/2);
-        System.out.println(lowerLimit);
 
         //extracting the words between these limits
 

@@ -35,13 +35,7 @@ public class PearsonCoefficientDriver {
             }
         }
 
-        System.out.println("Removing Row and Column Number "+rowNumber +" "+columnNumber);
 
-        double[][] newMatrix = PearsonCorrelationCoefficientClass.removeSpecifiedRowColumn(displayMatrix,rowNumber,columnNumber);
-
-        System.out.println("Newly generated Matrix is :");
-
-        PearsonCorrelationCoefficientClass.displayMatrix(newMatrix);
     }
 
 
