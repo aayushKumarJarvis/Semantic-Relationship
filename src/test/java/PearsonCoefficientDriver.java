@@ -5,7 +5,7 @@ public class PearsonCoefficientDriver {
 
     public static void main(String args[]) throws Exception {
 
-        RealMatrix matrix = PearsonCorrelationCoefficientClass.calculatePearsonCoefficient();
+        RealMatrix matrix = PearsonCorrelationCoefficientClass.calculatePearsonCoefficient(FrequencyMatrixClass.generateFrequencyMatrix());
 
         double[][] displayMatrix = matrix.getData();
 

@@ -14,21 +14,22 @@ public class BackTraceClass {
 
     public static double[][] getCurrentCorrelationMatrix() throws Exception {
 
-        RealMatrix matrix = PearsonCorrelationCoefficientClass.calculatePearsonCoefficient();
+        double[][] frequencyMatrix = FrequencyMatrixClass.generateFrequencyMatrix();
+        RealMatrix matrix = PearsonCorrelationCoefficientClass.calculatePearsonCoefficient(frequencyMatrix);
         return matrix.getData();
     }
 
-    public static String identifyWordFromFrequencyMatrix() throws Exception {
+    public static String identifyWordFromFrequencyMatrix(double[][] currentCorrelationMatrix) throws Exception {
 
-        double[][] currentMatrix = getCurrentCorrelationMatrix();
         int rowIndex = 0;
         int columnIndex = 0;
-        double maxCorrelation = PearsonCorrelationCoefficientClass.getMaximumElement(currentMatrix);
+
+        double maxCorrelation = PearsonCorrelationCoefficientClass.getMaximumElement(currentCorrelationMatrix);
 
         // Get the row and column index of the maximum correlation coefficient
-        for(int i=0;i<currentMatrix.length;i++) {
-            for(int j=0;j<currentMatrix[0].length;j++) {
-                if(maxCorrelation == currentMatrix[i][j]) {
+        for(int i=0;i<currentCorrelationMatrix.length;i++) {
+            for(int j=0;j<currentCorrelationMatrix[0].length;j++) {
+                if(maxCorrelation == currentCorrelationMatrix[i][j]) {
                     rowIndex = i;
                     columnIndex = j;
                 }
@@ -66,6 +67,29 @@ public class BackTraceClass {
             return wordOne + " " + wordTwo;
     }
 
+    public static double[][] removeColumnFromMatrix(double[][] matrix, int columnNumber) {
+
+        double[][] newMatrix = new double[matrix.length][matrix[0].length-1];
+
+        if(matrix != null && matrix.length > 0 && matrix[0].length > columnNumber) {
+
+            for(int i =0;i<matrix.length;i++) {
+
+                int newColIdx = 0;
+                for(int j =0;j<matrix[i].length;j++) {
+
+                    if(j!=columnNumber)
+                    {
+                        newMatrix[i][newColIdx] = matrix[i][j];
+                        newColIdx++;
+                    }
+                }
+            }
+        }
+
+        return newMatrix;
+    }
+
     public static int countElementsInMatrix(double[][] matrix) {
 
         int count = 0;
@@ -77,5 +101,5 @@ public class BackTraceClass {
 
         return count;
     }
-        
+
 }

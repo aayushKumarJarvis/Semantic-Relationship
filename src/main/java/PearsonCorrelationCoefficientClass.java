@@ -8,9 +8,8 @@ import org.apache.commons.math3.stat.correlation.PearsonsCorrelation;
 
 public class PearsonCorrelationCoefficientClass {
 
-    public static RealMatrix calculatePearsonCoefficient() throws Exception {
+    public static RealMatrix calculatePearsonCoefficient(double[][] frequencyMatrix) throws Exception {
 
-        double[][] frequencyMatrix = FrequencyMatrixClass.generateFrequencyMatrix();
         PearsonsCorrelation objectOfCorrelation = new PearsonsCorrelation();
 
         RealMatrix correlationMatrix = objectOfCorrelation.computeCorrelationMatrix(frequencyMatrix);
