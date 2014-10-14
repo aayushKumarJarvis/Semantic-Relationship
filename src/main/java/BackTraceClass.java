@@ -67,18 +67,18 @@ public class BackTraceClass {
             return wordOne + " " + wordTwo;
     }
 
-    public static double[][] removeColumnFromMatrix(double[][] matrix, int columnNumber) {
+    public static double[][] removeColumnFromMatrix(double[][] matrix, int columnNumber1, int columnNumber2) {
 
         double[][] newMatrix = new double[matrix.length][matrix[0].length-1];
 
-        if(matrix != null && matrix.length > 0 && matrix[0].length > columnNumber) {
+        if(matrix != null && matrix.length > 0 && matrix[0].length > columnNumber1 && matrix[0].length > columnNumber2) {
 
             for(int i =0;i<matrix.length;i++) {
 
                 int newColIdx = 0;
                 for(int j =0;j<matrix[i].length;j++) {
 
-                    if(j!=columnNumber)
+                    if(j!=columnNumber1 || j!=columnNumber2)
                     {
                         newMatrix[i][newColIdx] = matrix[i][j];
                         newColIdx++;
