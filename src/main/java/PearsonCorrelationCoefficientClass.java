@@ -30,32 +30,6 @@ public class PearsonCorrelationCoefficientClass {
         return max;
     }
 
-    public static double[][] removeSpecifiedRowColumn(double[][] matrix, int rowToBeRemoved, int columnToBeRemoved) {
-
-        double destinationArray[][] = new double[matrix.length-1][matrix[0].length-1];
-
-        int p = 0;
-        for( int i = 0; i < matrix.length; ++i)
-        {
-            if ( i == rowToBeRemoved)
-                continue;
-
-
-            int q = 0;
-            for( int j = 0; j < matrix[0].length; ++j)
-            {
-                if ( j == columnToBeRemoved)
-                    continue;
-
-                destinationArray[p][q] = matrix[i][j];
-                ++q;
-            }
-
-            ++p;
-        }
-
-        return destinationArray;
-    }
 
     public static void displayMatrix(double[][] matrix) {
 

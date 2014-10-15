@@ -10,7 +10,6 @@ public class PatternStringGeneration {
 
         // counter variable to check for exhaustion of matrix.
         int count = BackTraceClass.countElementsInMatrix(frequencyMatrix);
-        System.out.println(BackTraceClass.identifyWordFromFrequencyMatrix(correlationMatrix));
 
         // *********************WHILE LOOP WILL START HERE ************************* //
 
@@ -57,15 +56,21 @@ public class PatternStringGeneration {
             String wordOne = uniqueWordsList[uniqueWordsIndexOne];
             String wordTwo = uniqueWordsList[uniqueWordsIndexTwo];
 
-            if(wordTwo == wordOne)
+            if(wordTwo == wordOne) {
                 System.out.print(wordOne + " ");
+
+            }
 
             //Modifying the two Matrices and countOfElements
             frequencyMatrix = BackTraceClass.removeColumnFromMatrix(frequencyMatrix, indexOfWordOne, indexOfWordTwo);
+
             correlationMatrix = PearsonCorrelationCoefficientClass.calculatePearsonCoefficient(frequencyMatrix).getData();
+
             count = BackTraceClass.countElementsInMatrix(frequencyMatrix);
 
         }
+
+
     }
 
     public static void main(String[] args) throws Exception {
